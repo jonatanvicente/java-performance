@@ -5,6 +5,11 @@
 
 Repository with resources and examples for optimizing Java applications for performance.
 
+#### Folder Structure
+
+* jmh-samples: Contains examples of Java Microbenchmark Harness (JMH) benchmarks.
+
+
 
 ### Resources
 
