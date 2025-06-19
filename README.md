@@ -20,6 +20,7 @@ Repository with resources and examples for optimizing Java applications for perf
 
 ```
 ./gradlew :jmh-samples:jmh
+./gradlew :jmh-benchmarking:jmh
 ```
 
 ### Resources
