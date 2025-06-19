@@ -47,7 +47,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.security.NoSuchAlgorithmException;
-import java.security.Policy;
+//import java.security.Policy;
 import java.security.URIParameter;
 import java.util.concurrent.TimeUnit;
 
@@ -81,14 +81,14 @@ public class JMHSample_33_SecurityManager {
     public static class SecurityManagerInstalled {
         @Setup
         public void setup() throws IOException, NoSuchAlgorithmException, URISyntaxException {
-            URI policyFile = JMHSample_33_SecurityManager.class.getResource("/jmh-security.policy").toURI();
+/*            URI policyFile = JMHSample_33_SecurityManager.class.getResource("/jmh-security.policy").toURI();
             Policy.setPolicy(Policy.getInstance("JavaPolicy", new URIParameter(policyFile)));
-            System.setSecurityManager(new SecurityManager());
+            System.setSecurityManager(new SecurityManager());*/
         }
 
         @TearDown
         public void tearDown() {
-            System.setSecurityManager(null);
+            //System.setSecurityManager(null);
         }
     }
 
@@ -96,7 +96,7 @@ public class JMHSample_33_SecurityManager {
     public static class SecurityManagerEmpty {
         @Setup
         public void setup() throws IOException, NoSuchAlgorithmException, URISyntaxException {
-            System.setSecurityManager(null);
+            //System.setSecurityManager(null);
         }
     }
 

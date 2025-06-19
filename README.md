@@ -1,15 +1,26 @@
 
 
 
-### Java Performance Optimization
+## Java Performance Optimization
 
 Repository with resources and examples for optimizing Java applications for performance.
 
-#### Folder Structure
+### Versions
 
-* jmh-samples: Contains examples of Java Microbenchmark Harness (JMH) benchmarks.
+* **Java 17**: The examples and benchmarks are primarily designed for Java 17, but many concepts apply to earlier versions as well.
+* **Gradle 8.11**.
+* **JMH 1.37**: The benchmarks use the Java Microbenchmark Harness (JMH) for accurate performance measurements.
+
+### Folder Structure
+
+* **jmh.java.performance**: Contains examples of Java Microbenchmark Harness (JMH) benchmarks and others.
 
 
+### Useful commands
+
+```
+./gradlew :jmh-samples:jmh
+```
 
 ### Resources
 
