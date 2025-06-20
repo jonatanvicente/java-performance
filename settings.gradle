@@ -1,2 +1,3 @@
 include 'jmh-samples'
 include 'jmh-benchmarking'
+include 'star-wars'

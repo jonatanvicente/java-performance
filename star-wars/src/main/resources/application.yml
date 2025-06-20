@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: springbootstarwars
+  jmx:
+    enabled: true
+
+server:
+  port: 8763
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+url:
+  #connection_timeout: 30000
+  #maxBytesInMemory: 30000000
+  ds_test: https://swapi.py4e.com/api/vehicles/
+  secret: SgVkYp3s6v9y$B&E)H+MbQeThWmZq4t7
+  headerString: Authorization
+  authoritiesClaim: authorities
+  err: Auth Error, Token Unavailable
+
+logging:
+  level:
+    root: INFO
+    "[org.springframework]": ERROR
+    "[com.businessassistantbcn]": INFO
+  pattern:
+    # console: Spring's default
+    file: "%date %5level %-40.40logger{39} [%thread] %msg%n"
+#  file:
+#    name: opendata.log

@@ -14,7 +14,7 @@ Repository with resources and examples for optimizing Java applications for perf
 ### Folder Structure
 
 * **jmh.java.performance**: Contains examples of Java Microbenchmark Harness (JMH) benchmarks and others.
-
+* **star-wars**: A simple Spring Boot application that serves as a demo for performance optimization techniques.
 
 ### Useful commands
 
@@ -27,6 +27,7 @@ Repository with resources and examples for optimizing Java applications for perf
 
 * [Java Performance](https://www.oreilly.com/library/view/java-performance-2nd/9781492056102/) by Scott Oaks
 * [Effective Java](https://www.oreilly.com/library/view/effective-java-3rd/9780134686097/) by Joshua Bloch
+* [Shipilev's Blog](https://shipilev.net/)
 * [JMH Documentation](https://openjdk.org/projects/code-tools/jmh/)
 * [Java GC Tuning Guide](https://docs.oracle.com/en/java/javase/17/gctuning/index.html)
 * [VisualVM Guide](https://visualvm.github.io/)

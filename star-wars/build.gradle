@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.0.6'
+    id 'application'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'com.starwars.App'
+        )
+    }
+}
+
+group 'com.starwars'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation 'org.springframework.boot:spring-boot-starter-web:3.0.6'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux:3.0.6'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-autoconfigure', version: '3.0.6'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator:3.0.6'
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.6.8'
+    implementation 'org.json:json:20210307'
+    implementation 'com.jayway.jsonpath:json-path:2.6.0'
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator:3.0.6'
+    implementation group: 'org.springframework', name: 'spring-context', version: '5.3.15'
+    implementation group: 'org.springframework', name: 'spring-context-support', version: '5.3.15'
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+
+    // JAX-B dependencies for JDK 9+
+    implementation 'jakarta.xml.bind:jakarta.xml.bind-api:2.3.2'
+
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+    testCompileOnly 'org.projectlombok:lombok:1.18.22'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
+
+}
+
+test {
+    useJUnitPlatform()
+}
