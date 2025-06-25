@@ -23,4 +23,11 @@ public class StarWarsController {
         return service.getStarWarsVehicles();
     }
 
+
+    @GetMapping("/slow-vehicles")
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<?> getStarWarsSlowVehicles() throws MalformedURLException {
+        return service.getSlowVehicles();
+    }
+
 }
