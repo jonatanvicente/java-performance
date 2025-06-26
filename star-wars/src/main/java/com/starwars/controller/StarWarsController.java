@@ -3,6 +3,8 @@ package com.starwars.controller;
 import com.starwars.service.StarWarsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -16,18 +18,29 @@ import java.net.MalformedURLException;
 public class StarWarsController {
 
     @Autowired
-    private StarWarsService service;
+    private StarWarsService starWarsService;
+    private final String filePath = "files/The_Uncertain_Path.txt";
+
+
     @GetMapping("/vehicles")
     @ResponseStatus(HttpStatus.OK)
     public Mono<?> getStarWarsVehicles() throws MalformedURLException {
-        return service.getStarWarsVehicles();
+        return starWarsService.getStarWarsVehicles();
     }
 
 
     @GetMapping("/slow-vehicles")
     @ResponseStatus(HttpStatus.OK)
     public Mono<?> getStarWarsSlowVehicles() throws MalformedURLException {
-        return service.getSlowVehicles();
+        return starWarsService.getSlowVehicles();
+    }
+
+    @GetMapping(value = "/extract", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    public Mono<ResponseEntity<byte[]>> getStract() {
+        return starWarsService.readFileBytes(filePath)
+                .map(bytes -> ResponseEntity.ok()
+                        .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                        .body(bytes));
     }
 
 }

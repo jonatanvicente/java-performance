@@ -5,9 +5,12 @@ import com.starwars.dto.StarWarsVehiclesResultDto;
 import com.starwars.proxy.HttpProxy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
-
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -28,7 +31,7 @@ public class StarWarsService {
         return httpProxy.getRequestData(new URL(config.getDs_test()), StarWarsVehiclesResultDto.class);
     }
 
-    public Mono<List<Object>> getSlowVehicles() throws MalformedURLException{
+    public Mono<List<Object>> getSlowVehicles(){
         while (true) {
             slowVehicles.add(new byte[100* 1024 * 1024]); // Add 1MB objects
             try {
@@ -38,4 +41,31 @@ public class StarWarsService {
             }
         }
     }
+
+    public Mono<byte[]> readFileBytes(String filePath) {
+
+        provokeFileLeak(filePath);
+
+        try {
+            Resource resource = new ClassPathResource(filePath);
+            byte[] data = resource.getInputStream().readAllBytes();
+            return Mono.just(data);
+        } catch (IOException e) {
+            return Mono.error(e);
+        }
+    }
+
+    public void provokeFileLeak(String filePath) {
+        List<InputStream> streams = new ArrayList<>();
+        try {
+            for (int i = 0; i < 1000000; i++) {
+                Resource resource = new ClassPathResource(filePath);
+                InputStream inputStream = resource.getInputStream(); // It doesn't close!!!
+                streams.add(inputStream);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
