@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -71,11 +72,32 @@ public class StarWarsService {
     }
 
 
-    public Mono<StarWarsVehicleDto> findVehicleByName(String name) throws MalformedURLException {
+    public Mono<StarWarsVehicleDto> findVehicleByNameOptimized(String name) throws MalformedURLException {
         return httpProxy.getRequestData(new URL(config.getDs_test()), StarWarsVehiclesResultDto.class)
                 .flatMapMany(result -> Flux.fromArray(result.getResults()))
                 .filter(vehicle -> name.equals(vehicle.getName()))
                 .next(); // returns Mono<VehicleDto> with the first match
     }
 
+    public Mono<StarWarsVehicleDto> findVehicleByName(String name) {
+        return Mono.fromCallable(() -> {
+            List<Integer> slowList = new ArrayList<>();
+            for (int i = 0; i < 100_000; i++) {
+                slowList.add(0, i);
+            }
+
+            StarWarsVehiclesResultDto result = httpProxy
+                    .getRequestData(new URL(config.getDs_test()), StarWarsVehiclesResultDto.class)
+                    .block();
+
+            if (result != null && result.getResults() != null) {
+                for (StarWarsVehicleDto vehicle : result.getResults()) {
+                    if (name.equals(vehicle.getName())) {
+                        return vehicle;
+                    }
+                }
+            }
+            return null;
+        }).flatMap(vehicle -> vehicle != null ? Mono.just(vehicle) : Mono.empty());
+    }
 }
