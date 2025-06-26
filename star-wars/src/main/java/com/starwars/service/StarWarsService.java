@@ -1,6 +1,7 @@
 package com.starwars.service;
 
 import com.starwars.config.PropertiesConfig;
+import com.starwars.dto.StarWarsVehicleDto;
 import com.starwars.dto.StarWarsVehiclesResultDto;
 import com.starwars.proxy.HttpProxy;
 import lombok.extern.slf4j.Slf4j;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import java.io.IOException;
 import java.io.InputStream;
@@ -66,6 +68,14 @@ public class StarWarsService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    public Mono<StarWarsVehicleDto> findVehicleByName(String name) throws MalformedURLException {
+        return httpProxy.getRequestData(new URL(config.getDs_test()), StarWarsVehiclesResultDto.class)
+                .flatMapMany(result -> Flux.fromArray(result.getResults()))
+                .filter(vehicle -> name.equals(vehicle.getName()))
+                .next(); // returns Mono<VehicleDto> with the first match
     }
 
 }
