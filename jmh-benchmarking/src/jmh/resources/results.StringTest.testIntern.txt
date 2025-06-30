@@ -1,3 +1,0 @@
-Benchmark                            Mode  Cnt    Score    Error  Units
-BenchmarkStringTest.testIntern      thrpt   25  899.581 ± 15.151  ops/s
-BenchmarkTestInit.measureSomething   avgt   25   ≈ 10⁻³           us/op

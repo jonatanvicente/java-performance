@@ -17,7 +17,7 @@ public class BenchmarkStringSetup {
     Level.Iteration - The setup is done before each iteration of the benchmark (each measurement cycle).
     Level.Invocation - The setup is done before each time the test method is executed.
  */
-    @Setup(Level.Iteration)
+    //@Setup(Level.Iteration)
     public void setup() {
         strings = new String[nStrings];
         for (int i = 0; i < nStrings; i++) {
