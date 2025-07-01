@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-@BenchmarkMode(Mode.AverageTime)
+//@BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @State(Scope.Thread)
 @Fork(1)
@@ -33,12 +33,12 @@ public class ListVsMapAccessBenchmark {
         }
     }
 
-    @Benchmark
+    //@Benchmark
     public int accessArrayListMiddle() {
         return arrayList.get(size / 2);
     }
 
-    @Benchmark
+    //@Benchmark
     public int accessHashMapMiddleKey() {
         return hashMap.get(size / 2);
     }

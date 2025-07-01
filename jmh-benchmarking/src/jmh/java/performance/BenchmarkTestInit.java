@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 @Warmup(iterations = 2, timeUnit = TimeUnit.MILLISECONDS, time = 3000)
 public class BenchmarkTestInit {
 
-    @Benchmark
+   // @Benchmark
     public void measureSomething(Blackhole blackhole) {
         blackhole.consume(50);
     }
