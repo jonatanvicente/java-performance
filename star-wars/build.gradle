@@ -5,6 +5,43 @@ plugins {
     id 'me.champeau.jmh' version '0.7.3'
 }
 
+
+/*bootRun {
+    jvmArgs = [
+            "-XX:+UnlockDiagnosticVMOptions",
+            "-XX:+PrintCompilation",
+            "-XX:+LogCompilation",
+            "-XX:-TieredCompilation",
+            "-XX:LogFile=compilacion.xml"
+    ]
+}*/
+
+// GC execution with Parallel GC. High time ratio (10:1)
+bootRun {
+    jvmArgs = [
+            "-Xmx64m",
+            "-Xms64m",
+            "-XX:GCTimeRatio=9",
+            //"-XX:+UseSerialGC",
+            "-XX:+UseParallelGC"
+            //"-XX:MaxGCPauseMillis=100" //,
+            //"-XX:+PrintGCDetails"
+    ]
+}
+// GC execution with G1GC. Customized to use with 16 cores
+/*bootRun {
+    jvmArgs = [
+            "-Xmx64m",
+            "-Xms64m",
+            "-XX:GCTimeRatio=9",
+            "-XX:ParallelGCThreads=16"  //see lscpu | grep -E 'Core|Thread|CPU'
+            //"-XX:+UseSerialGC",
+            //"-XX:+UseParallelGC"
+            //"-XX:MaxGCPauseMillis=100" //,
+            //"-XX:+PrintGCDetails"
+    ]
+}*/
+
 sourceSets {
     jmh {
         java.srcDirs('src/jmh/java')
