@@ -12,7 +12,7 @@ public class BenchmarkString {
      */
 
 
-    @Benchmark
+    //@Benchmark
     public void testIntern(Blackhole bh) { //if the value of an operation isn't used, the compiler is free to optimize out the operation
         for (int i = 0; i < 10000; i++) {
             String s = new String ("String to intern " + i);

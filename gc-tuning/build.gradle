@@ -12,7 +12,7 @@ application {
 }
 
 /*
-        profile 1:
+        Profile 1:
         Baja latencia (GC menor frecuente, pausas cortas)
             Reducir al máximo las pausas, promoviendo lentamente, y con un Young Gen relativamente grande para evitar GCs mayores.
  */
@@ -29,46 +29,56 @@ tasks.named('run') {
 }
 
 /*
-    profile 2: Alto throughput (velocidad total, sin importar pausas largas)
+    Profile 2: Alto throughput (velocidad total, sin importar pausas largas)
         Maximizar el rendimiento general, asumiendo pausas de GC mayores. Se promueve rápidamente y se limpia rápido.
-
-        -XX:+UseParallelGC \
--XX:MaxTenuringThreshold=1 \
--XX:SurvivorRatio=8 \
--XX:+UseTLAB \
--Xms128m -Xmx128m
-
-
 */
 
+/*tasks.named('run') {
+    jvmArgs = [
+            '-XX:+UseParallelGC',
+            '-XX:MaxTenuringThreshold=1',
+            '-XX:SurvivorRatio=8',
+            '-XX:+UseTLAB',
+            '-Xms128m',
+            '-Xmx128m'
+    ]
+}*/
+
 
 /*
-    profile 3: Memoria limitada (heap pequeña y control de promociones
+    Profile 3: Memoria limitada (heap pequeña y control de promociones
     Usar eficientemente una heap pequeña. Se evita promoción innecesaria y se cuida el espacio en Survivor.
-
-    -XX:+UseSerialGC \
--XX:MaxTenuringThreshold=5 \
--XX:SurvivorRatio=4 \
--XX:NewRatio=2 \
--Xms64m -Xmx64m
-
-
-
  */
 
+/*tasks.named('run') {
+    jvmArgs = [
+            '-XX:+UseSerialGC',
+            '-XX:MaxTenuringThreshold=5',
+            '-XX:SurvivorRatio=4',
+            '-XX:NewRatio=2',
+            '-Xms64m',
+            '-Xmx64m'
+    ]
+}*/
+
 /*
 
-  profile 4: Aplicación reactiva (microservicios con respuesta rápida)
+  Profile 4: Aplicación reactiva (microservicios con respuesta rápida)
   GC adaptado a microservicios REST donde las pausas deben ser mínimas. Uso de G1GC moderno y heap pequeña con tuning.
 
-  -XX:+UseG1GC \
--XX:MaxTenuringThreshold=8 \
--XX:SurvivorRatio=6 \
--XX:G1ReservePercent=20 \
--XX:InitiatingHeapOccupancyPercent=30 \
--Xms128m -Xmx128m
-
  */
+/*tasks.named('run') {
+    jvmArgs = [
+            '-XX:+UseG1GC',
+            '-XX:MaxTenuringThreshold=8',
+            '-XX:SurvivorRatio=6',
+            '-XX:G1ReservePercent=20',
+            '-XX:InitiatingHeapOccupancyPercent=30',
+            '-Xms128m',
+            '-Xmx128m'
+    ]
+}*/
+
 
 /*
      A revisar (visualvm / jmc):

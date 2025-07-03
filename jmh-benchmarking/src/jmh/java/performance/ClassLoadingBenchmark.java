@@ -14,7 +14,7 @@ public class ClassLoadingBenchmark {
     @Param({"java.util.ArrayList"})
     private String className;
 
-    @Benchmark
+    //@Benchmark
     public Class<?> loadClass() throws ClassNotFoundException {
         return Class.forName(className, false, getClass().getClassLoader());
     }

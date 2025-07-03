@@ -27,7 +27,7 @@ public class BenchmarkStringSetup {
     }
 
 
-    @Benchmark
+    //@Benchmark
     public void testIntern(Blackhole bh) {
         for (int i = 0; i < nStrings; i++) {
             String t = strings[i].intern();

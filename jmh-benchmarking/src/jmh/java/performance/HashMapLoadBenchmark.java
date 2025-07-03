@@ -15,7 +15,7 @@ public class HashMapLoadBenchmark {
     @Param({"100000"})
     private int size;
 
-    @Benchmark
+    //@Benchmark
     @Threads(3)
     public HashMap<Integer, Integer> loadHashMap() {
         HashMap<Integer, Integer> map = new HashMap<>(size);

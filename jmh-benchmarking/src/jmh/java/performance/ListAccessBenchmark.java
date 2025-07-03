@@ -32,12 +32,12 @@ public class ListAccessBenchmark {
         }
     }
 
-    @Benchmark
+    //@Benchmark
     public int accessArrayListMiddle() {
         return arrayList.get(size / 2);
     }
 
-    @Benchmark
+    //@Benchmark
     public int accessLinkedListMiddle() {
         return linkedList.get(size / 2);
     }

@@ -32,12 +32,12 @@ public class ArrayAccessBenchmark {
         }
     }
 
-    @Benchmark
+    //@Benchmark
     public int accessArrayMiddle() {
         return array[size / 2];
     }
 
-    @Benchmark
+    //@Benchmark
     public int accessArrayListMiddle() {
         return arrayList.get(size / 2);
     }
