@@ -14,7 +14,7 @@ import java.net.MalformedURLException;
 @RequestMapping(value = "/java-performance/api/v1/starwars")
 public class StarWarsController {
 
-    @Autowired
+        @Autowired
     private StarWarsService starWarsService;
     private final String filePath = "files/The_Uncertain_Path.txt";
 

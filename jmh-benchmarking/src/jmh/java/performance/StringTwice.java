@@ -7,13 +7,13 @@ import org.openjdk.jmh.annotations.State;
 @State(Scope.Thread)
 public class StringTwice {
 
-    @Benchmark
+   // @Benchmark
     public String useStringLiteral() {
         String s = "hello";
         return s;
     }
 
-    @Benchmark
+    //@Benchmark
     public String useNewString() {
         String s = new String("hello");
         return s;

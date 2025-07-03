@@ -21,12 +21,12 @@ public class GCBehaviorTest {
                 longLivedObjects.add(new byte[2 * _1MB]);
             }
 
-            Thread.sleep(100); // Para que VisualVM o JMC puedan trazar pausas
+            Thread.sleep(1000); // Para que VisualVM o JMC puedan trazar pausas
         }
 
         // Mantener la aplicación viva un poco más
         System.out.println("Finalizando bucle. Durmiendo para observar en JMC...");
-        Thread.sleep(30000);
+        Thread.sleep(120000);
     }
 
     private static void generateShortLivedObjects() {
