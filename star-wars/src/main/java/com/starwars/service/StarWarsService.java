@@ -3,6 +3,7 @@ package com.starwars.service;
 import com.starwars.config.PropertiesConfig;
 import com.starwars.dto.StarWarsVehicleDto;
 import com.starwars.dto.StarWarsVehiclesResultDto;
+import com.starwars.dto.TodayJsonDto;
 import com.starwars.proxy.HttpProxy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +30,8 @@ public class StarWarsService {
     PropertiesConfig config;
     @Autowired
     HttpProxy httpProxy;
+
+    private final String DEFAULT_PATTERN = "dd/MM/yy HH:mm:ss";
 
     List<Object> slowVehicles = new ArrayList<>();
 
@@ -99,5 +104,19 @@ public class StarWarsService {
             }
             return null;
         }).flatMap(vehicle -> vehicle != null ? Mono.just(vehicle) : Mono.empty());
+    }
+
+
+    public Mono<TodayJsonDto> getTodayObject()throws Exception{
+        TodayJsonDto response = new TodayJsonDto(getToday(DEFAULT_PATTERN));
+        return Mono.just(response);
+    }
+
+    //synchronized method locks all threads !!!
+    private synchronized String getToday(String pattern) throws InterruptedException{
+        Thread.sleep(500); // Simulate a delay to provoke a slow response
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(pattern);
+        LocalDateTime now = LocalDateTime.now();
+        return dtf.format(now);
     }
 }

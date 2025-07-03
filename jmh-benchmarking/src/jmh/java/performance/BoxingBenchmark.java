@@ -24,7 +24,7 @@ public class BoxingBenchmark {
         }
     }
 
-    @Benchmark
+    //@Benchmark
     public int sumPrimitive() {
         int sum = 0;
         for (int value : primitiveArray) {
@@ -33,7 +33,7 @@ public class BoxingBenchmark {
         return sum;
     }
 
-    @Benchmark
+    //@Benchmark
     public int sumWrapper() {
         int sum = 0;
         for (Integer value : wrapperArray) {

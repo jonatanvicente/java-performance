@@ -17,7 +17,7 @@ plugins {
 }*/
 
 // GC execution with Parallel GC. High time ratio (10:1)
-bootRun {
+/*bootRun {
     jvmArgs = [
             "-Xmx64m",
             "-Xms64m",
@@ -27,7 +27,7 @@ bootRun {
             //"-XX:MaxGCPauseMillis=100" //,
             //"-XX:+PrintGCDetails"
     ]
-}
+}*/
 // GC execution with G1GC. Customized to use with 16 cores
 /*bootRun {
     jvmArgs = [

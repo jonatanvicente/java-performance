@@ -43,8 +43,14 @@ public class StarWarsController {
     @GetMapping("/vehicle/{name}")
     @ResponseStatus(HttpStatus.OK)
     public Mono<?> getVehicleByName(@PathVariable("name") String name) throws MalformedURLException {
-        //return starWarsService.findVehicleByNameOptimized(name);
-        return starWarsService.findVehicleByName(name);
+        return starWarsService.findVehicleByNameOptimized(name);
+        //return starWarsService.findVehicleByName(name);
+    }
+
+    @GetMapping("/today")
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<?> getToday() throws Exception{
+        return starWarsService.getTodayObject();
     }
 
 

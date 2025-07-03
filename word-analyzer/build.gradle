@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'org.example'
+version = 'unspecified'
+
+application {
+    mainClass = 'tuning.WordFrequencyAnalyzer'
+}
+
+repositories {
+    mavenCentral()
+}
+
+tasks.named('run') {
+    jvmArgs = [
+            '-XX:+UseSerialGC',
+            '-Xms16m',
+            '-Xmx32m'
+    ]
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
