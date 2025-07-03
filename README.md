@@ -15,7 +15,7 @@ Repository with resources and examples for optimizing Java applications for perf
 
 * **jmh.java.performance**: Contains examples of Java Microbenchmark Harness (JMH) benchmarks and others.
 * **star-wars**: A simple Spring Boot application that serves as a demo for performance optimization techniques.
-
+* **gc-tuning**: Contains examples and explanations for tuning the Java Garbage Collector (GC) to improve performance. See [README](./gc-tuning/README.md) for details.
 ### Useful commands
 
 ```
