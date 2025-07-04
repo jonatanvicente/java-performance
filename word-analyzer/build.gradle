@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+    id "me.champeau.jmh" version "0.7.3"
 }
 
 group = 'org.example'
@@ -10,19 +11,39 @@ application {
     mainClass = 'tuning.WordFrequencyAnalyzer'
 }
 
+sourceSets {
+    jmh {
+        java.srcDirs('src/jmh/java')
+        resources.srcDirs('src/jmh/resources')
+        compileClasspath += sourceSets.main.runtimeClasspath
+    }
+}
+
 repositories {
     mavenCentral()
 }
 
-tasks.named('run') {
+/*tasks.named('run') {
     jvmArgs = [
             '-XX:+UseSerialGC',
             '-Xms16m',
             '-Xmx32m'
     ]
+}*/
+
+tasks.named('run') {
+    jvmArgs = [
+            '-XX:+UseG1GC',
+            '-Xms512m',
+            '-Xmx1024m'
+    ]
 }
 
 dependencies {
+    jmh 'org.openjdk.jmh:jmh-core:1.37'
+    jmh 'org.openjdk.jmh:jmh-generator-annprocess:1.37'
+    jmh 'org.openjdk.jmh:jmh-generator-bytecode:1.37'
+    jmhAnnotationProcessor 'org.openjdk.jmh:jmh-generator-annprocess:1.37'
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
