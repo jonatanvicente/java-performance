@@ -1,9 +1,14 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group = 'org.example'
 version = 'unspecified'
+
+application {
+    mainClass = 'tuning.Utility'
+}
 
 repositories {
     mavenCentral()
