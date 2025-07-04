@@ -7,7 +7,7 @@ import java.util.*;
 public class WordFrequencyAnalyzer {
 
     //Analiza un texto real, cuenta las palabras más frecuentes y las imprime ordenadas
-    static final String FILE_PATH = "files/episode_IV.txt";
+    static final String FILE_PATH = "files/episode_IVa.txt";
 
     public static void main(String[] args) throws IOException {
         String path = WordFrequencyAnalyzer.class.getClassLoader().getResource(FILE_PATH).getPath();
