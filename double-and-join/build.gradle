@@ -16,7 +16,8 @@ group = 'org.example'
 version = 'unspecified'
 
 application {
-    mainClass = 'tuning.Utility'
+    //mainClass = 'tuning.Utility'
+    mainClass = 'tuning.UtilityOptimized'
 }
 
 repositories {

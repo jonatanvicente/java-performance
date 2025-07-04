@@ -36,14 +36,12 @@ public class Utility {
             Integer value = list.get(i);
             list.set(i, value * 2);
             result += value * 2 + ",";  // Concatenación en bucle
-            try {
-                Thread.sleep(1);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
         }
         return result;
     }
-
 }
+/*
+Output length: 54445
+Elapsed time: 130 ms
+ */
 
