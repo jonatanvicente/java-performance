@@ -12,6 +12,13 @@ management:
     web:
       exposure:
         include: "*"
+  endpoint:
+    health:
+      show-details: always
+      show-components: always  # KEEP and eye in pro: select endpoints to expose to Prometheus
+  metrics:
+    tags:
+      application: ${spring.application.name}
 
 url:
   #connection_timeout: 30000

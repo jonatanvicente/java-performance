@@ -80,6 +80,8 @@ dependencies {
     implementation group: 'org.springframework', name: 'spring-context-support', version: '5.3.15'
     implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
 
+    implementation("io.micrometer:micrometer-registry-prometheus:latest.release")
+
     // JAX-B dependencies for JDK 9+
     implementation 'jakarta.xml.bind:jakarta.xml.bind-api:2.3.2'
 
